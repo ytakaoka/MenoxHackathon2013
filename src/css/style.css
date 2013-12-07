@@ -5,6 +5,10 @@ html, body{
 	padding : 0;
 }
 
+*{
+	position : relative;
+}
+
 div{
 	padding : 0;
 	margin : 0;
@@ -24,7 +28,6 @@ div{
 }
 
 #foot-left, #foot-right{
-	position : relative;
-	width : 50%;
+	width : 49%;
 	height : 100%;
 }
