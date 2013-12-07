@@ -1,0 +1,30 @@
+html, body{
+	height : 100%;
+	width : 100%;
+	margin : 0;
+	padding : 0;
+}
+
+div{
+	padding : 0;
+	margin : 0;
+	border : 0;
+}
+
+#information{
+	height : 33%;
+}
+
+#load{
+	height : 67%;
+}
+
+#load > div{
+	display : inline-block;
+}
+
+#foot-left, #foot-right{
+	position : relative;
+	width : 50%;
+	height : 100%;
+}
