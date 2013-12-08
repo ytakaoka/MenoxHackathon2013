@@ -4,20 +4,25 @@
 			<meta charset="utf-8">
 			<meta name="viewport"
 				content="width=360px,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-			<title>未定</title>
+			<title>marathon</title>
 			<link rel=stylesheet type="text/css" href="css/style.css">
+			<script type="text/javascript"
+      src="//maps.googleapis.com/maps/api/js?key=AIzaSyBkz8qDHi3e-To2SoRzUngUb56fQLsnLrI&libraries=geometry&sensor=false"></script>
 	</head>
 	<body>
 		<div id="information">
-			<dl>
-				<dt>移動距離</dt><dd id="distance"></dd>
-				<dt>歩数</dt><dd id="stepCount"></dd>
+			<div id="streetview"></div>
+			<dl id="acievments">
+				<dt>移動距離</dt><dd><span id="distance"></span>m</dd>
+				<dt>歩数</dt><dd><span id="stepCount"></span>歩</dd>
 			</dl>
 		</div>
-		<div id="load">
+		<div id="road">
 			<div id="foot-left"></div>
 			<div id="foot-right"></div>
 		</div>
+		<script type="text/javascript" src="js/path.js"></script>
+		<script type="text/javascript" src="js/StreetWalker.js"></script>
 		<script type="text/javascript" src="js/advance.js"></script>
 		<script type="text/javascript" src="js/init.js"></script>
 	</body>

@@ -17,17 +17,28 @@ div{
 
 #information{
 	height : 33%;
+	position : relative;
 }
 
-#load{
+#streetview {
+	position : absolute;
+	top : 0;
+	left : 0;
+	width : 100%;
+	height : 100%;
+}
+
+#road{
+	background-image : url(../assets/img/asphalt.png);
+	background-repeat : repeat-y;
 	height : 67%;
 }
 
-#load > div{
+#road > div{
 	display : inline-block;
 }
 
 #foot-left, #foot-right{
-	width : 49%;
+	width : 47%;
 	height : 100%;
 }

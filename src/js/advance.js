@@ -1,26 +1,57 @@
-function AdvanceTracker(){
-  this.stepCount = 0;
+function Feet () {
   this.advance = 0;
-  this.createdAt = new Date().getTime();
+  this.landAt = null;
+  this.pitch = 0;
+  this.stepCount = 0;
 };
 
-AdvanceTracker.prototype.step = function (touchEvent, foot) {
-  var delta;
+Feet.prototype.land = function (at) {
+  if (0 < this.advance) { this.stepCount++; }
   
-  if (touchEvent.type === 'touchstart') {
-    this.lastStepPosition = touchEvent.touches[0].clientY;
-    return;
-  }
+  this.landAt = at;
+  this.pitch = 0;
+  this.stepCount++;
+}
+
+Feet.prototype.push = function (to) {
+  if (this.landAt === null) { return; }
+  this.pitch = to - this.landAt;
+}
+
+Feet.prototype.kickOff = function () {
+  this.landAt = null;
+}
+
+
+function AdvanceTracker(){
+  this.advance = 0;
+  this.foot = {
+    left : new Feet(),
+    right : new Feet()
+  };
+};
+
+AdvanceTracker.prototype.getAdvance = function () {
+  return this.advance + this.foot.left.pitch + this.foot.right.pitch;
+}
+
+AdvanceTracker.prototype.getStepCount = function () {
+  return this.foot.left.stepCount + this.foot.right.stepCount;
+}
+
+AdvanceTracker.prototype.step = function (type, touch, feet) {
+  var feet = this.foot[feet];
   
-  if (touchEvent.type === 'touchend') {
-    this.stepCount++;
-    return;
-  }
-  
-  if (0 < touchEvent.touches.length) {
-    delta = (touchEvent.touches[0].clientY - this.lastStepPosition);
-    this.advance += delta;
-    this.lastStepPosition = touchEvent.touches[0].clientY;
+  if (type === 'touchstart') {
+    this.advance += feet.pitch;
+    if (this.interval < feet.pitch) {
+      this.onInterval();
+    }
+    feet.land(touch.clientY);
+  } else if (type === 'touchend') {
+    feet.kickOff();
+  } else if (type === 'touchmove') {
+    feet.push(touch.clientY);
   }
 }
 
