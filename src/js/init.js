@@ -59,7 +59,7 @@
     var advance = pxToMeter(tracker.getAdvance());
     var totalDistance = pxToMeter(advance);
     
-    if (0.7 < totalDistance - lastFrame) {
+    if (0.7 < Math.abs(totalDistance - lastFrame)) {
       requestAnimationFrame(updateView);
       lastFrame = totalDistance;
     }
